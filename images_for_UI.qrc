@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="images">
+    <file>Images/istockphoto-1210939712-612x612.jpg</file>
+    <file>Images/MSU-IIT Logo.jpg</file>
+    <file>Images/MSU-IIT Logo.png</file>
+    <file>Images/output-onlinejpgtools (1).png</file>
+    <file>Images/output-onlinejpgtools.png</file>
+    <file>Images/Thesis Logo.jpg</file>
+    <file>Images/Thesis Logo.png</file>
+    <file>Images/MSU-IIT Logo.jpg</file>
+    <file>Images/Thesis Logo.jpg</file>
+  </qresource>
+</RCC>
