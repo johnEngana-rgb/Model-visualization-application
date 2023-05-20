@@ -683,7 +683,7 @@ class Ui_MainWindow(object):
         self.label_26.setAlignment(QtCore.Qt.AlignCenter)
         self.label_26.setObjectName("label_26")
         self.tableWidget = QtWidgets.QTableWidget(self.frame_32)
-        self.tableWidget.setGeometry(QtCore.QRect(130, 240, 256, 192))
+        self.tableWidget.setGeometry(QtCore.QRect(170, 260, 256, 192))
         self.tableWidget.setStyleSheet("color:rgb(0, 0, 0)")
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(1)
@@ -702,16 +702,15 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
-        self.mainbodyWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
+        self.mainbodyWidget.setCurrentIndex(3)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        
-        
         self.Home_btn.clicked.connect(self.showHomePage)
         self.Models_btn.clicked.connect(self.showModelsPage)
         self.Forecasting_btn.clicked.connect(self.showForecastingPage)
         self.Datasets_btn.clicked.connect(self.showDatasetsPage)
         self.GenerateData_btn.clicked.connect(self.generateDataset)
+        self.
 
 
     def showHomePage(self):
@@ -805,16 +804,19 @@ class Ui_MainWindow(object):
         self.DatasetTable.resizeColumnsToContents()
         self.DatasetTable.resizeRowsToContents()
 
+    def generateModels(self):
 
-
-    def generateDataset(self):
-    
+#     def generateDataset(self):
+        
+        
         import csv
         import os
+        
         # Retrieve the selected region from the table
         selected_items = self.DatasetTable.selectedItems()
         if selected_items:
                 selected_region = selected_items[0].text()
+
 
                 # Define the file paths to your CSV datasets for each region
                 dataset_folder = os.path.abspath("DATASETS")
@@ -828,21 +830,28 @@ class Ui_MainWindow(object):
                 # Retrieve the file path for the selected region
                 csv_file_path = dataset_files.get(selected_region)
 
-                # Read the dataset from the CSV file
+
+        # Read the dataset from the CSV file
                 dataset = []
                 with open(csv_file_path, "r") as file:
                         reader = csv.reader(file)
-                for row in reader:
-                        dataset.append(row)
+                        for row in reader:
+                                dataset.append(row)
 
-                # Display the dataset in the QStackedWidget
-                dataset_text = "\n".join([",".join(row) for row in dataset])
-                self.DatasetText.setText(dataset_text)
+                # Set the number of rows and columns in the table
+                num_rows = len(dataset)
+                num_columns = len(dataset[1]) if dataset else 0
+                self.tableWidget.setRowCount(num_rows)
+                self.tableWidget.setColumnCount(num_columns)
 
-                # Switch to the dataset page in the QStackedWidget
-                self.mainbodyWidget.setCurrentIndex(3)  # Index of dataset page in the stacked widget
-
-
+                # Iterate over the dataset and populate the QTableWidget
+                for row, record in enumerate(dataset):
+                        for col, value in enumerate(record):
+                                item = QtWidgets.QTableWidgetItem(str(value))
+                                self.tableWidget.setItem(row, col, item)
+                # Adjust the table size to fit the contents
+                self.tableWidget.resizeColumnsToContents()
+                self.tableWidget.resizeRowsToContents()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

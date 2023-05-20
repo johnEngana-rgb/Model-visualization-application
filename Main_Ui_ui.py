@@ -789,7 +789,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem3 = QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem3)
         self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setGeometry(QRect(130, 240, 256, 192))
+        self.tableWidget.setGeometry(QRect(170, 260, 256, 192))
         self.tableWidget.setStyleSheet(u"color:rgb(0, 0, 0)")
 
         self.verticalLayout_33.addWidget(self.frame_32)
